@@ -9,18 +9,19 @@
 ## Questions
 ### Describe how Kotlin handles null safety. What are nullable types and non-null types in Kotlin? (0,5 points)
 
-<span style="color:blue">Provide your answer here! </span>
-<span style="color:blue">To avoid NullPointerException, we need to write defensive code that checks if an object is null before using it. Many modern programming languages, including Kotlin, made steps to convert runtime errors into compile time errors to improve programming language safeness. </span>
-<span style="color:blue">One of the way to do it in Kotlin is by adding nullability safeness mechanisms to language type systems. This is possible because Kotlin type system distinguishes between references that can hold null (nullable references) and those that cannot (non-nullable references). This single feature of Kotlin allows us to detect many errors related to NullPointerException at very early stages of development. Compiler together with IDE will prevent many NullPointerException. In many cases compilation will fail instead of application failing at runtime. </span>
-<span style="color:blue">So basically to put in simple points, </span>
-<span style="color:blue">
+<span style="color:blue">To avoid NullPointerException, we need to write defensive code that checks if an object is null before using it. Many modern programming languages, including Kotlin, made steps to convert runtime errors into compile time errors to improve programming language safeness. </span>  
+
+<span style="color:blue">One of the way to do it in Kotlin is by adding nullability safeness mechanisms to language type systems. This is possible because Kotlin type system distinguishes between references that can hold null (nullable references) and those that cannot (non-nullable references). This single feature of Kotlin allows us to detect many errors related to NullPointerException at very early stages of development. Compiler together with IDE will prevent many NullPointerException. In many cases compilation will fail instead of application failing at runtime. </span>  
+
+<span style="color:blue">So basically to put in simple points, </span>  
+
 1. Kotlin allows to store “Null” values in a variable.
 2. In Kotlin, the variables can be made of Null types by just adding a “?” symbol to the right side of the data type.
 3. A nullable type variable means it can also hold “Null” as a value in it.
 4. A non-nullable type variable means that it can not hold “Null” as a value in it. </span>
 > The compiler can detect whether the variable being referred to is nullable or not. If it is nullable, then the compiler makes sure that the Null safety checks are being used. If null safety checks are not being used then the compilation error occurs. Thus safes the user from run time NullPointerExceptions.
 ```kotlin 
-var name: String = "Vibhor" // Non Nullable String variable 
+var name: String = "Name" // Non Nullable String variable 
 
 var name: String? = null // Nullabe String variable
 ```
@@ -33,11 +34,11 @@ var name: String? = null // Nullabe String variable
 * If the left-hand side of the operator is null, then it will return null value.
 * If the left-hand side of the operator is not null, then it will return the result of the right-hand side expression.
 ```kotlin 
-var title: String? = "Vibhor"
-var len: Int? = title?.length //It will return title's length i.e '6'
+var title: String? = "Title"
+var len: Int? = title?.length // It will return title's length i.e '5'
 
 var title: String? = null
-var len: Int? = title?.length //It will return null
+var len: Int? = title?.length // It will return null
 ```
 ##### Elvis Operator ( ?: ) 
 * The elvis operator is represented by a question mark followed by a colon ( ?: )
@@ -54,8 +55,8 @@ val ans: Boolean = null ?: true // return true (2nd Operand)
 * The Not Null Assertion in Kotlin, is another tool to deal with nullity.
 * This operator explicitly casts nullable variables to non-nullable variables. </span>
 ```kotlin 
-var y: String? = "foo"
-var size: Int = y!!.length
+var myString: String? = "foo"
+var size: Int = myString!!.length
 ```
 > Normally, we would not be able to assign a value from a nullable property length to a non-nullable variable size like we have done in the above example.
 
