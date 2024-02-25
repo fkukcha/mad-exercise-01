@@ -7,6 +7,20 @@ class App {
     // Game logic for a number guessing game
     fun playNumberGame(digitsToGuess: Int = 4) {
         //TODO: build a menu which calls the functions and works with the return values
+        val generatedNumber = generateRandomNonRepeatingNumber(digitsToGuess)
+        println("Generated number: $generatedNumber")
+
+        var userInput: Int
+        var compareResult = CompareResult(0, 0)
+
+        do {
+            print("User input: ")
+            userInput = readlnOrNull()?.toIntOrNull() ?: continue
+            compareResult = checkUserInputAgainstGeneratedNumber(userInput, generatedNumber)
+            println(compareResult)
+        } while (compareResult.m != digitsToGuess)
+
+        println("User wins!")
     }
 
     /**
@@ -28,8 +42,9 @@ class App {
         if (length !in 1..9) {
             throw IllegalArgumentException("Length must be between 1 and 9")
         }
-        val digits = (1..9).toList().shuffled()
-        digits.take(length).joinToString("").toInt()
+
+        val digits = (1..9).shuffled().take(length)
+        digits.fold(0) { acc, digit -> acc * 10 + digit }
     }
 
     /**
@@ -49,8 +64,6 @@ class App {
      * @throws IllegalArgumentException if the inputs do not have the same number of digits.
      */
 
-    data class CompareResult(val n: Int, val m: Int)
-
     val checkUserInputAgainstGeneratedNumber: (Int, Int) -> CompareResult = { input, generatedNumber ->
         //TODO implement the function
         val inputString = input.toString()
@@ -60,25 +73,16 @@ class App {
             throw IllegalArgumentException("Inputs must have the same number of digits")
         }
 
-        val inputStringSet = inputString.toSet()
-        val generatedStringSet = generatedString.toSet()
-
-        val n = inputStringSet.intersect(generatedStringSet).size
-        val m = inputString.zip(generatedString).count { (a, b) -> a == b }
+        val m = inputString.zip(generatedString).count { it.first == it.second }
+        val n = inputString.toSet().intersect(generatedString.toSet()).count()
 
         CompareResult(n, m)
     }
 }
 
 fun main() {
-    println("Hello World!")
     // TODO: call the App.playNumberGame function with and without default arguments
-    // Create an instance of the App class
     val app = App()
-
-    // The playNumberGame function with default arguments
-    // app.playNumberGame()
-
-    // The playNumberGame function with custom arguments
+    //app.playNumberGame(5)
     app.playNumberGame(5)
 }
