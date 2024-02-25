@@ -75,6 +75,8 @@ val stringValue: String? = anyValue as? String
 <span style="color:blue">Higher-order functions, on the other hand, are functions that can take other functions as parameters or return functions. </span>  
 
 <span style="color:blue">Storing a function inside a variable allows you to treat functions as first-class citizens, meaning you can pass them around as arguments, return them from other functions, or store them in data structures. </span>  
+
+<span style="color:blue">Here's an example demonstrating lambda expressions and higher-order functions in Kotlin: </span>
 ```kotlin 
 // Higher-order function taking another function as a parameter
 fun operation(x: Int, y: Int, func: (Int, Int) -> Int): Int {
