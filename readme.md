@@ -70,7 +70,35 @@ val stringValue: String? = anyValue as? String
 
 ### What are lambda expressions and higher order functions in Kotlin? Why would you store a function inside a variable? (0,5 points)
 
-<span style="color:blue">Provide your answer here!</span>
+<span style="color:blue">In Kotlin, lambda expressions are a concise way to represent anonymous functions. They allow you to create functions on-the-fly without explicitly defining them. </span>  
+
+<span style="color:blue">Higher-order functions, on the other hand, are functions that can take other functions as parameters or return functions. </span>  
+
+<span style="color:blue">Storing a function inside a variable allows you to treat functions as first-class citizens, meaning you can pass them around as arguments, return them from other functions, or store them in data structures. </span>  
+```kotlin 
+// Higher-order function taking another function as a parameter
+fun operation(x: Int, y: Int, func: (Int, Int) -> Int): Int {
+    return func(x, y)
+}
+
+fun main() {
+    // Example of a lambda expression
+    val sum: (Int, Int) -> Int = { a, b -> a + b }
+
+    // Using the higher-order function with the lambda expression
+    val result = operation(10, 5, sum)
+    println("Result of operation: $result") // Output: Result of operation: 15
+
+    // You can also directly pass a lambda expression
+    val result2 = operation(8, 3) { a, b -> a * b }
+    println("Result of operation: $result2") // Output: Result of operation: 24
+
+    // Storing a lambda in a variable
+    val square: (Int) -> Int = { number -> number * number }
+    println("Square of 5 is ${square(5)}") // Output: Square of 5 is 25
+}
+```
+<span style="color:blue">Storing functions in variables or passing them as arguments can make your code more concise, modular, and expressive, especially when dealing with functional programming paradigms or asynchronous programming. </span>
 
 ### Provide a solution for the following number guessing game inside `App.kt`. (3 points)
 
