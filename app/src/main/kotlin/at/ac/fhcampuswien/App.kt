@@ -25,7 +25,11 @@ class App {
      */
     val generateRandomNonRepeatingNumber: (Int) -> Int = { length ->
         //TODO implement the function
-        0   // return value is a placeholder
+        if (length !in 1..9) {
+            throw IllegalArgumentException("Length must be between 1 and 9")
+        }
+        val digits = (1..9).toList().shuffled()
+        digits.take(length).joinToString("").toInt()
     }
 
     /**
@@ -44,13 +48,37 @@ class App {
      *         The result is formatted as "Output: m:n", where "m" and "n" represent the above values, respectively.
      * @throws IllegalArgumentException if the inputs do not have the same number of digits.
      */
+
+    data class CompareResult(val n: Int, val m: Int)
+
     val checkUserInputAgainstGeneratedNumber: (Int, Int) -> CompareResult = { input, generatedNumber ->
         //TODO implement the function
-        CompareResult(0, 0)   // return value is a placeholder
+        val inputString = input.toString()
+        val generatedString = generatedNumber.toString()
+
+        if (inputString.length != generatedString.length) {
+            throw IllegalArgumentException("Inputs must have the same number of digits")
+        }
+
+        val inputStringSet = inputString.toSet()
+        val generatedStringSet = generatedString.toSet()
+
+        val n = inputStringSet.intersect(generatedStringSet).size
+        val m = inputString.zip(generatedString).count { (a, b) -> a == b }
+
+        CompareResult(n, m)
     }
 }
 
 fun main() {
     println("Hello World!")
     // TODO: call the App.playNumberGame function with and without default arguments
+    // Create an instance of the App class
+    val app = App()
+
+    // The playNumberGame function with default arguments
+    // app.playNumberGame()
+
+    // The playNumberGame function with custom arguments
+    app.playNumberGame(5)
 }
