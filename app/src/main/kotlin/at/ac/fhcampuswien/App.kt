@@ -84,5 +84,5 @@ fun main() {
     // TODO: call the App.playNumberGame function with and without default arguments
     val app = App()
     //app.playNumberGame()
-    app.playNumberGame(5)
+    app.playNumberGame(6)
 }
